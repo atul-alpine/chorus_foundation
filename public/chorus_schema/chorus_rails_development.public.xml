@@ -1,0 +1,1097 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<database name="chorus_rails_development" schema="public" type="PostgreSQL - 9.2.4">
+   <tables>
+      <table name="activities" numRows="9" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('activities_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="entity_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="users"/>
+            <parent column="id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="workspaces"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="entity_type" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="3" name="event_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="events"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="activities_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="index_activities_on_entity_id_and_entity_type" unique="false">
+            <column ascending="true" name="entity_id"/>
+            <column ascending="true" name="entity_type"/>
+         </index>
+         <index name="index_activities_on_event_id" unique="false">
+            <column ascending="true" name="event_id"/>
+         </index>
+      </table>
+      <table name="associated_datasets" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('associated_datasets_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="dataset_id" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="2" name="workspace_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="workspaces"/>
+         </column>
+         <column autoUpdated="false" digits="6" id="3" name="created_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="6" id="4" name="updated_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="5" name="legacy_id" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="6" name="deleted_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="gpdb_database_object_workspace_associations_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="index_associated_datasets_on_dataset_id_and_workspace_id" unique="false">
+            <column ascending="true" name="dataset_id"/>
+            <column ascending="true" name="workspace_id"/>
+         </index>
+      </table>
+      <table name="attachments" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('attachments_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="note_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="events"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="contents_file_name" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="3" name="created_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="6" id="4" name="updated_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="5" name="contents_content_type" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="6" name="contents_file_size" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="6" id="7" name="contents_updated_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="8" name="legacy_id" nullable="true" remarks="" size="255" type="varchar"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="attachments_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="index_attachments_on_note_id" unique="false">
+            <column ascending="true" name="note_id"/>
+         </index>
+      </table>
+      <table name="comments" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('comments_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="author_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="users"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="body" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="3" name="event_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="events"/>
+         </column>
+         <column autoUpdated="false" digits="6" id="4" name="created_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="6" id="5" name="updated_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="6" name="legacy_id" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="7" name="deleted_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="comments_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="index_comments_on_event_id" unique="false">
+            <column ascending="true" name="event_id"/>
+         </index>
+         <index name="index_comments_on_event_id_and_deleted_at" unique="false">
+            <column ascending="true" name="event_id"/>
+            <column ascending="true" name="deleted_at"/>
+         </index>
+      </table>
+      <table name="csv_files" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('csv_files_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="workspace_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="workspaces"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="contents_file_name" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="3" name="contents_content_type" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="4" name="contents_file_size" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="6" id="5" name="contents_updated_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="6" id="6" name="created_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="6" id="7" name="updated_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="8" name="has_header" nullable="true" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" digits="0" id="9" name="column_names" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="10" name="types" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="11" name="to_table" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="12" name="delimiter" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="13" name="user_id" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="14" name="new_table" nullable="true" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" defaultValue="false" digits="0" id="15" name="truncate" nullable="true" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" defaultValue="true" digits="0" id="16" name="user_uploaded" nullable="true" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" digits="0" id="17" name="import_id" nullable="true" remarks="" size="10" type="int4"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="csv_files_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="index_csv_files_on_workspace_id" unique="false">
+            <column ascending="true" name="workspace_id"/>
+         </index>
+      </table>
+      <table name="dashboard_items" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('dashboard_items_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="user_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="users"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="name" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="3" name="location" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="6" id="4" name="created_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="6" id="5" name="updated_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" defaultValue="''::character varying" digits="0" id="6" name="options" nullable="false" remarks="" size="255" type="varchar"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="dashboard_items_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="data_source_account_permissions" numRows="46" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('data_source_account_permissions_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="accessed_id" nullable="false" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="2" name="data_source_account_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="data_source_accounts"/>
+         </column>
+         <column autoUpdated="false" defaultValue="NULL::character varying" digits="0" id="3" name="accessed_type" nullable="false" remarks="" size="255" type="varchar"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="gpdb_databases_instance_accounts_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="index_databases_instance_accounts_on_database_id" unique="false">
+            <column ascending="true" name="accessed_id"/>
+         </index>
+         <index name="index_instance_account_permissions_on_accessed" unique="false">
+            <column ascending="true" name="accessed_id"/>
+            <column ascending="true" name="accessed_type"/>
+         </index>
+         <index name="index_instance_account_permissions_on_instance_account_id" unique="false">
+            <column ascending="true" name="data_source_account_id"/>
+         </index>
+      </table>
+      <table name="data_source_accounts" numRows="2" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('data_source_accounts_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="data_source_account_id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="data_source_account_permissions"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="db_username" nullable="true" remarks="" size="256" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="data_source_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="data_sources"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="3" name="owner_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="users"/>
+         </column>
+         <column autoUpdated="false" digits="6" id="4" name="created_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="6" id="5" name="updated_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="6" name="legacy_id" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="7" name="encrypted_db_password" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="8" name="invalid_credentials" nullable="true" remarks="" size="1" type="bool"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="instance_credentials_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="index_instance_accounts_on_data_source_id" unique="false">
+            <column ascending="true" name="data_source_id"/>
+         </index>
+         <index name="index_instance_accounts_on_owner_id" unique="false">
+            <column ascending="true" name="owner_id"/>
+         </index>
+      </table>
+      <table name="data_sources" numRows="2" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('data_sources_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="data_source_id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="data_source_accounts"/>
+            <child column="data_source_id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="databases"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="name" nullable="true" remarks="" size="256" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="description" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="3" name="host" nullable="true" remarks="" size="256" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="4" name="port" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="5" name="db_name" nullable="true" remarks="" size="256" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="6" name="created_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="6" id="7" name="updated_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="8" name="owner_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="users"/>
+         </column>
+         <column autoUpdated="false" defaultValue="false" digits="0" id="9" name="shared" nullable="true" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" digits="0" id="10" name="version" nullable="true" remarks="" size="256" type="varchar"/>
+         <column autoUpdated="false" defaultValue="'online'::character varying" digits="0" id="11" name="state" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="12" name="legacy_id" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="13" name="last_checked_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="6" id="14" name="last_online_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="6" id="15" name="deleted_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="16" name="type" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="17" name="is_hawq" nullable="true" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" defaultValue="false" digits="0" id="18" name="ssl" nullable="true" remarks="" size="1" type="bool"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="data_sources_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="index_data_sources_on_deleted_at_and_id" unique="false">
+            <column ascending="true" name="deleted_at"/>
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="index_data_sources_on_owner_id" unique="false">
+            <column ascending="true" name="owner_id"/>
+         </index>
+      </table>
+      <table name="databases" numRows="46" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('databases_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="data_source_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="data_sources"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="name" nullable="true" remarks="" size="256" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="3" name="created_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="6" id="4" name="updated_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="6" id="5" name="stale_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="6" id="6" name="deleted_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" defaultValue="NULL::character varying" digits="0" id="7" name="type" nullable="false" remarks="" size="255" type="varchar"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="gpdb_databases_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="index_databases_on_data_source_id" unique="false">
+            <column ascending="true" name="data_source_id"/>
+         </index>
+         <index name="index_databases_on_data_source_id_and_name" unique="true">
+            <column ascending="true" name="data_source_id"/>
+            <column ascending="true" name="name"/>
+         </index>
+         <index name="index_gpdb_databases_on_deleted_at_and_id" unique="false">
+            <column ascending="true" name="deleted_at"/>
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="datasets" numRows="890" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('datasets_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="dataset_id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="datasets_notes"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="type" nullable="true" remarks="" size="256" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="name" nullable="true" remarks="" size="256" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="3" name="schema_id" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="6" id="4" name="created_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="6" id="5" name="updated_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" defaultValue="false" digits="0" id="6" name="master_table" nullable="true" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" digits="6" id="7" name="stale_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="8" name="query" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="9" name="legacy_id" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="10" name="edc_workspace_id" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="11" name="deleted_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="12" name="workspace_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="workspaces"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="13" name="hdfs_data_source_id" nullable="true" remarks="" size="10" type="int4"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="gpdb_database_objects_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="index_database_objects_on_schema_id" unique="false">
+            <column ascending="true" name="schema_id"/>
+         </index>
+         <index name="index_datasets_on_deleted_at_and_id" unique="false">
+            <column ascending="true" name="deleted_at"/>
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="index_datasets_on_name_schema_id_and_type" unique="true">
+            <column ascending="true" name="name"/>
+            <column ascending="true" name="schema_id"/>
+            <column ascending="true" name="type"/>
+         </index>
+      </table>
+      <table name="datasets_notes" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('datasets_notes_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="dataset_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="datasets"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="note_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="events"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="3" name="legacy_id" nullable="true" remarks="" size="255" type="varchar"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="datasets_notes_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="events" numRows="3" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('events_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="event_id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="activities"/>
+            <child column="note_id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="attachments"/>
+            <child column="event_id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="comments"/>
+            <child column="note_id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="datasets_notes"/>
+            <child column="note_id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="notes_work_flow_results"/>
+            <child column="note_id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="notes_workfiles"/>
+            <child column="event_id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="notifications"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="action" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="actor_id" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="3" name="target1_id" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="4" name="target1_type" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="5" name="created_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="6" id="6" name="updated_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="7" name="target2_type" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="8" name="target2_id" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="9" name="additional_data" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="10" name="workspace_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="workspaces"/>
+         </column>
+         <column autoUpdated="false" digits="6" id="11" name="deleted_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="12" name="legacy_id" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="13" name="legacy_type" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" defaultValue="false" digits="0" id="14" name="insight" nullable="true" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" digits="0" id="15" name="promoted_by_id" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="6" id="16" name="promotion_time" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" defaultValue="false" digits="0" id="17" name="published" nullable="true" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" digits="0" id="18" name="target3_type" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="19" name="target3_id" nullable="true" remarks="" size="10" type="int4"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="events_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="index_events_on_id_and_action" unique="false">
+            <column ascending="true" name="id"/>
+            <column ascending="true" name="action"/>
+         </index>
+         <index name="index_events_on_id_and_action_and_deleted_at" unique="false">
+            <column ascending="true" name="id"/>
+            <column ascending="true" name="action"/>
+            <column ascending="true" name="deleted_at"/>
+         </index>
+         <index name="index_events_on_id_and_deleted_at" unique="false">
+            <column ascending="true" name="id"/>
+            <column ascending="true" name="deleted_at"/>
+         </index>
+         <index name="index_events_on_workspace_id" unique="false">
+            <column ascending="true" name="workspace_id"/>
+         </index>
+      </table>
+      <table name="gnip_data_sources" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('gnip_data_sources_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="name" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="description" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="3" name="owner_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="users"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="4" name="username" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="5" name="password" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="6" name="created_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="6" id="7" name="updated_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="8" name="stream_url" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="9" name="deleted_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="gnip_data_sources_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="index_gnip_data_sources_on_deleted_at_and_id" unique="false">
+            <column ascending="true" name="deleted_at"/>
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="hdfs_data_sources" numRows="1" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('hdfs_data_sources_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="hdfs_data_source_id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="hdfs_entries"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="name" nullable="true" remarks="" size="256" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="description" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="3" name="host" nullable="false" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="4" name="port" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="5" name="owner_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="users"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="6" name="version" nullable="true" remarks="" size="256" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="7" name="username" nullable="true" remarks="" size="256" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="8" name="group_list" nullable="true" remarks="" size="256" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="9" name="created_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="6" id="10" name="updated_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="11" name="legacy_id" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="12" name="last_checked_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="6" id="13" name="last_online_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" defaultValue="'online'::character varying" digits="0" id="14" name="state" nullable="false" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="15" name="deleted_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="16" name="job_tracker_host" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="17" name="job_tracker_port" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="18" name="hdfs_version" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" defaultValue="false" digits="0" id="19" name="high_availability" nullable="true" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" digits="0" id="20" name="connection_parameters" nullable="true" remarks="" size="2147483647" type="text"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="hdfs_data_sources_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="index_hdfs_data_sources_on_deleted_at_and_id" unique="false">
+            <column ascending="true" name="deleted_at"/>
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="index_hdfs_data_sources_on_owner_id" unique="false">
+            <column ascending="true" name="owner_id"/>
+         </index>
+      </table>
+      <table name="hdfs_entries" numRows="1" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('hdfs_entries_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="hdfs_entry_id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="hdfs_imports"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="path" nullable="true" remarks="" size="4096" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="hdfs_data_source_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="hdfs_data_sources"/>
+         </column>
+         <column autoUpdated="false" digits="6" id="3" name="modified_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="4" name="size" nullable="true" remarks="" size="19" type="int8"/>
+         <column autoUpdated="false" digits="0" id="5" name="is_directory" nullable="true" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" digits="0" id="6" name="content_count" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="7" name="parent_id" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="6" id="8" name="created_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="6" id="9" name="updated_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="6" id="10" name="stale_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="11" name="legacy_id" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="12" name="deleted_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="hdfs_entries_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="index_hdfs_entries_on_deleted_at_and_id" unique="false">
+            <column ascending="true" name="deleted_at"/>
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="index_hdfs_entries_on_hadoop_instance_id_and_path" unique="true">
+            <column ascending="true" name="hdfs_data_source_id"/>
+            <column ascending="true" name="path"/>
+         </index>
+      </table>
+      <table name="hdfs_imports" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('hdfs_imports_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="hdfs_entry_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="hdfs_entries"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="user_id" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="3" name="upload_id" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="4" name="file_name" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="5" name="success" nullable="true" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" digits="6" id="6" name="finished_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="6" id="7" name="created_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="6" id="8" name="updated_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="hdfs_imports_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="import_templates" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('import_templates_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="destination_id" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="2" name="source_id" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="3" name="destination_name" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="4" name="truncate" nullable="true" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" digits="0" id="5" name="row_limit" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="6" id="6" name="created_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="6" id="7" name="updated_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="import_templates_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="imports" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('imports_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="import_schedule_id" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="6" id="2" name="finished_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="6" id="3" name="created_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="4" name="workspace_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="workspaces"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="5" name="to_table" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="6" name="source_id" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="7" name="truncate" nullable="true" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" digits="0" id="8" name="new_table" nullable="true" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" digits="0" id="9" name="user_id" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="10" name="sample_count" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="11" name="file_name" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="12" name="success" nullable="true" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" digits="0" id="13" name="destination_dataset_id" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="14" name="legacy_id" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="15" name="started_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" defaultValue="NULL::character varying" digits="0" id="16" name="type" nullable="false" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="17" name="schema_id" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="18" name="source_type" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="19" name="canceled_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="20" name="cancel_message" nullable="true" remarks="" size="255" type="varchar"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="imports_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="job_results" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('job_results_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="job_result_id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="job_task_results"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="job_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="jobs"/>
+         </column>
+         <column autoUpdated="false" digits="6" id="2" name="started_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="6" id="3" name="finished_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="4" name="succeeded" nullable="true" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" digits="6" id="5" name="created_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="6" id="6" name="updated_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="job_results_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="job_subscriptions" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('job_subscriptions_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="user_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="users"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="job_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="jobs"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="3" name="condition" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="4" name="created_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="6" id="5" name="updated_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="job_subscriptions_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="index_job_subscriptions_on_job_id_and_condition_and_user_id" unique="false">
+            <column ascending="true" name="job_id"/>
+            <column ascending="true" name="condition"/>
+            <column ascending="true" name="user_id"/>
+         </index>
+      </table>
+      <table name="job_task_results" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('job_task_results_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="job_result_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="job_results"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="name" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="3" name="started_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="6" id="4" name="finished_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="5" name="status" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="6" name="created_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="6" id="7" name="updated_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="8" name="message" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="9" name="payload_result_id" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="10" name="payload_id" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="11" name="type" nullable="true" remarks="" size="255" type="varchar"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="job_task_results_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="job_tasks" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('job_tasks_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="index" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="6" id="2" name="deleted_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="3" name="job_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="jobs"/>
+         </column>
+         <column autoUpdated="false" digits="6" id="4" name="created_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="6" id="5" name="updated_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="6" name="type" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="7" name="payload_id" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="8" name="payload_type" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="9" name="status" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="10" name="payload_result_id" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="11" name="killable_id" nullable="true" remarks="" size="255" type="varchar"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="job_tasks_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="jobs" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('jobs_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="job_id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="job_results"/>
+            <child column="job_id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="job_subscriptions"/>
+            <child column="job_id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="job_tasks"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="name" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="2" name="enabled" nullable="true" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" digits="0" id="3" name="workspace_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="workspaces"/>
+         </column>
+         <column autoUpdated="false" digits="6" id="4" name="created_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="6" id="5" name="updated_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="6" id="6" name="deleted_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="6" id="7" name="next_run" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="6" id="8" name="last_run" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="9" name="interval_unit" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="10" name="interval_value" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="6" id="11" name="end_run" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" defaultValue="'Alaska'::character varying" digits="0" id="12" name="time_zone" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" defaultValue="'idle'::character varying" digits="0" id="13" name="status" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="14" name="owner_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="users"/>
+         </column>
+         <column autoUpdated="false" defaultValue="'nobody'::character varying" digits="0" id="15" name="success_notify" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" defaultValue="'nobody'::character varying" digits="0" id="16" name="failure_notify" nullable="true" remarks="" size="255" type="varchar"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="jobs_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="index_jobs_on_workspace_id" unique="false">
+            <column ascending="true" name="workspace_id"/>
+         </index>
+      </table>
+      <table name="memberships" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('memberships_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="user_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="users"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="workspace_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="workspaces"/>
+         </column>
+         <column autoUpdated="false" digits="6" id="3" name="created_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="6" id="4" name="updated_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="5" name="legacy_id" nullable="true" remarks="" size="255" type="varchar"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="memberships_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="index_memberships_on_user_id" unique="false">
+            <column ascending="true" name="user_id"/>
+         </index>
+         <index name="index_memberships_on_user_id_and_workspace_id" unique="false">
+            <column ascending="true" name="user_id"/>
+            <column ascending="true" name="workspace_id"/>
+         </index>
+         <index name="index_memberships_on_workspace_id" unique="false">
+            <column ascending="true" name="workspace_id"/>
+         </index>
+      </table>
+      <table name="milestones" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('milestones_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="name" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="state" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="3" name="target_date" nullable="true" remarks="" size="13" type="date"/>
+         <column autoUpdated="false" digits="0" id="4" name="workspace_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="workspaces"/>
+         </column>
+         <column autoUpdated="false" digits="6" id="5" name="created_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="6" id="6" name="updated_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="milestones_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="index_milestones_on_workspace_id" unique="false">
+            <column ascending="true" name="workspace_id"/>
+         </index>
+      </table>
+      <table name="notes_work_flow_results" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('notes_work_flow_results_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="result_id" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="note_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="events"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="notes_work_flow_results_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="notes_workfiles" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('notes_workfiles_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="note_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="events"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="workfile_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="workfiles"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="3" name="legacy_id" nullable="true" remarks="" size="255" type="varchar"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="notes_workfiles_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="notifications" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('notifications_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="recipient_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="users"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="event_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="events"/>
+         </column>
+         <column autoUpdated="false" digits="6" id="3" name="created_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="6" id="4" name="updated_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" defaultValue="false" digits="0" id="5" name="read" nullable="false" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" digits="0" id="6" name="legacy_id" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="7" name="comment_id" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="6" id="8" name="deleted_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="notifications_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="open_workfile_events" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('open_workfile_events_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="user_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="users"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="workfile_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="workfiles"/>
+         </column>
+         <column autoUpdated="false" digits="6" id="3" name="created_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="6" id="4" name="updated_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="open_workfile_events_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="queue_classic_jobs" numRows="1" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('queue_classic_jobs_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="q_name" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="method" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="3" name="args" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="6" id="4" name="locked_at" nullable="true" remarks="" size="35" type="timestamptz"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="queue_classic_jobs_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="idx_qc_on_name_only_unlocked" unique="false">
+            <column ascending="true" name="q_name"/>
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="schema_migrations" numRows="300" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="version" nullable="false" remarks="" size="255" type="varchar"/>
+         <index name="unique_schema_migrations" unique="true">
+            <column ascending="true" name="version"/>
+         </index>
+      </table>
+      <table name="schemas" numRows="132" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('schemas_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="name" nullable="true" remarks="" size="256" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="parent_id" nullable="false" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="6" id="3" name="created_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="6" id="4" name="updated_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="5" name="active_tables_and_views_count" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="6" id="6" name="stale_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="6" id="7" name="refreshed_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="6" id="8" name="deleted_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" defaultValue="NULL::character varying" digits="0" id="9" name="parent_type" nullable="false" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" defaultValue="NULL::character varying" digits="0" id="10" name="type" nullable="false" remarks="" size="255" type="varchar"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="gpdb_schemas_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="index_gpdb_schemas_on_database_id" unique="false">
+            <column ascending="true" name="parent_id"/>
+         </index>
+         <index name="index_schemas_on_deleted_at_and_id" unique="false">
+            <column ascending="true" name="deleted_at"/>
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="index_schemas_on_name_and_parent_id_and_parent_type" unique="true">
+            <column ascending="true" name="name"/>
+            <column ascending="true" name="parent_id"/>
+            <column ascending="true" name="parent_type"/>
+         </index>
+      </table>
+      <table name="sessions" numRows="1" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('sessions_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="session_id" nullable="true" remarks="" size="40" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="user_id" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="6" id="3" name="created_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="6" id="4" name="updated_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="sessions_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="index_sessions_on_session_id" unique="true">
+            <column ascending="true" name="session_id"/>
+         </index>
+      </table>
+      <table name="system_statuses" numRows="5" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('system_statuses_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" defaultValue="false" digits="0" id="1" name="expired" nullable="true" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" defaultValue="false" digits="0" id="2" name="user_count_exceeded" nullable="true" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" digits="0" id="3" name="message" nullable="true" remarks="" size="2048" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="4" name="created_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="6" id="5" name="updated_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="system_statuses_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="tableau_workbook_publications" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('tableau_workbook_publications_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="name" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="dataset_id" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="3" name="workspace_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="workspaces"/>
+         </column>
+         <column autoUpdated="false" digits="6" id="4" name="created_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="6" id="5" name="updated_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="6" name="project_name" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="7" name="linked_tableau_workfile_id" nullable="true" remarks="" size="10" type="int4"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="tableau_workbook_publications_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="taggings" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('taggings_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="tag_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="tags"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="taggable_id" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="3" name="taggable_type" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="4" name="tagger_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="users"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="5" name="tagger_type" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="6" name="context" nullable="true" remarks="" size="128" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="7" name="created_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="taggings_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="index_taggings_on_tag_id" unique="false">
+            <column ascending="true" name="tag_id"/>
+         </index>
+         <index name="index_taggings_on_taggable_id_and_taggable_type_and_context" unique="false">
+            <column ascending="true" name="taggable_id"/>
+            <column ascending="true" name="taggable_type"/>
+            <column ascending="true" name="context"/>
+         </index>
+         <index name="index_taggings_on_taggable_id_and_taggable_type_and_tag_id" unique="true">
+            <column ascending="true" name="taggable_id"/>
+            <column ascending="true" name="taggable_type"/>
+            <column ascending="true" name="tag_id"/>
+         </index>
+      </table>
+      <table name="tags" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('tags_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="tag_id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="taggings"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="name" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="2" name="taggings_count" nullable="false" remarks="" size="10" type="int4"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="tags_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="index_tags_on_lowercase_name" unique="true"/>
+      </table>
+      <table name="uploads" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('uploads_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="user_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="users"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="contents_file_name" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="3" name="contents_content_type" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="4" name="contents_file_size" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="6" id="5" name="contents_updated_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="6" id="6" name="created_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="6" id="7" name="updated_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="uploads_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="users" numRows="1" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('users_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="entity_id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="activities"/>
+            <child column="author_id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="comments"/>
+            <child column="user_id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="dashboard_items"/>
+            <child column="owner_id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="data_source_accounts"/>
+            <child column="owner_id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="data_sources"/>
+            <child column="owner_id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="gnip_data_sources"/>
+            <child column="owner_id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="hdfs_data_sources"/>
+            <child column="user_id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="job_subscriptions"/>
+            <child column="owner_id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="jobs"/>
+            <child column="user_id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="memberships"/>
+            <child column="recipient_id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="notifications"/>
+            <child column="user_id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="open_workfile_events"/>
+            <child column="tagger_id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="taggings"/>
+            <child column="user_id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="uploads"/>
+            <child column="archiver_id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="workspaces"/>
+            <child column="owner_id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="workspaces"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="username" nullable="true" remarks="" size="256" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="password_digest" nullable="true" remarks="" size="256" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="3" name="created_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="6" id="4" name="updated_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="5" name="first_name" nullable="true" remarks="" size="256" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="6" name="last_name" nullable="true" remarks="" size="256" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="7" name="email" nullable="true" remarks="" size="256" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="8" name="title" nullable="true" remarks="" size="256" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="9" name="dept" nullable="true" remarks="" size="256" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="10" name="notes" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" defaultValue="false" digits="0" id="11" name="admin" nullable="true" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" digits="6" id="12" name="deleted_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="13" name="image_file_name" nullable="true" remarks="" size="256" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="14" name="image_content_type" nullable="true" remarks="" size="256" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="15" name="image_file_size" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="6" id="16" name="image_updated_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" defaultValue="''::character varying" digits="0" id="17" name="password_salt" nullable="false" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="18" name="legacy_id" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="19" name="legacy_password_digest" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" defaultValue="true" digits="0" id="20" name="subscribed_to_emails" nullable="true" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" defaultValue="false" digits="0" id="21" name="developer" nullable="false" remarks="" size="1" type="bool"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="users_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="index_users_on_deleted_at_and_id" unique="false">
+            <column ascending="true" name="deleted_at"/>
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="index_users_on_lower_case_username" unique="true"/>
+      </table>
+      <table name="workfile_drafts" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('workfile_drafts_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="workfile_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="workfiles"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="base_version" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="3" name="owner_id" nullable="false" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="6" id="4" name="created_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="6" id="5" name="updated_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="6" name="content" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="7" name="legacy_id" nullable="true" remarks="" size="255" type="varchar"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="workfile_drafts_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="index_workfile_drafts_on_owner_id" unique="false">
+            <column ascending="true" name="owner_id"/>
+         </index>
+         <index name="index_workfile_drafts_on_workfile_id" unique="false">
+            <column ascending="true" name="workfile_id"/>
+         </index>
+         <index name="index_workfile_drafts_on_workfile_id_and_owner_id" unique="true">
+            <column ascending="true" name="workfile_id"/>
+            <column ascending="true" name="owner_id"/>
+         </index>
+      </table>
+      <table name="workfile_execution_locations" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('workfile_execution_locations_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="workfile_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="workfiles"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="workfile_type" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="3" name="execution_location_id" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="4" name="execution_location_type" nullable="true" remarks="" size="255" type="varchar"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="workfile_execution_locations_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="index_workfile_execution_locations_on_workfile_id" unique="false">
+            <column ascending="true" name="workfile_id"/>
+         </index>
+      </table>
+      <table name="workfile_versions" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('workfile_versions_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="workfile_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="workfiles"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="version_num" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="3" name="owner_id" nullable="false" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="4" name="commit_message" nullable="true" remarks="" size="256" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="5" name="modifier_id" nullable="false" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="6" id="6" name="created_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="6" id="7" name="updated_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="8" name="contents_file_name" nullable="true" remarks="" size="256" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="9" name="contents_content_type" nullable="true" remarks="" size="256" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="10" name="contents_file_size" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="6" id="11" name="contents_updated_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="12" name="legacy_id" nullable="true" remarks="" size="255" type="varchar"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="workfile_versions_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="index_workfile_versions_on_modifier_id" unique="false">
+            <column ascending="true" name="modifier_id"/>
+         </index>
+         <index name="index_workfile_versions_on_owner_id" unique="false">
+            <column ascending="true" name="owner_id"/>
+         </index>
+         <index name="index_workfile_versions_on_workfile_id" unique="false">
+            <column ascending="true" name="workfile_id"/>
+         </index>
+      </table>
+      <table name="workfiles" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('workfiles_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="workfile_id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="notes_workfiles"/>
+            <child column="workfile_id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="open_workfile_events"/>
+            <child column="workfile_id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="workfile_drafts"/>
+            <child column="workfile_id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="workfile_execution_locations"/>
+            <child column="workfile_id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="workfile_versions"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="workspace_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="workspaces"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="owner_id" nullable="false" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="3" name="description" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="6" id="4" name="created_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="6" id="5" name="updated_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="6" name="file_name" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="7" name="deleted_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="8" name="latest_workfile_version_id" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="9" name="content_type" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="10" name="execution_location_id" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="11" name="legacy_id" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" defaultValue="'Workfile'::character varying" digits="0" id="12" name="type" nullable="false" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="13" name="additional_data" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="6" id="14" name="user_modified_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="15" name="execution_location_type" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" defaultValue="'idle'::character varying" digits="0" id="16" name="status" nullable="true" remarks="" size="255" type="varchar"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="workfiles_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="index_workfiles_on_file_name_and_workspace_id" unique="true">
+            <column ascending="true" name="file_name"/>
+            <column ascending="true" name="workspace_id"/>
+         </index>
+         <index name="index_workfiles_on_owner_id" unique="false">
+            <column ascending="true" name="owner_id"/>
+         </index>
+         <index name="index_workfiles_on_workspace_id" unique="false">
+            <column ascending="true" name="workspace_id"/>
+         </index>
+      </table>
+      <table name="workspaces" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('workspaces_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="entity_id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="activities"/>
+            <child column="workspace_id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="associated_datasets"/>
+            <child column="workspace_id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="csv_files"/>
+            <child column="workspace_id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="datasets"/>
+            <child column="workspace_id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="events"/>
+            <child column="workspace_id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="imports"/>
+            <child column="workspace_id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="jobs"/>
+            <child column="workspace_id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="memberships"/>
+            <child column="workspace_id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="milestones"/>
+            <child column="workspace_id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="tableau_workbook_publications"/>
+            <child column="workspace_id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="workfiles"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="name" nullable="true" remarks="" size="256" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="2" name="created_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="6" id="3" name="updated_at" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" defaultValue="false" digits="0" id="4" name="public" nullable="true" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" digits="6" id="5" name="archived_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="6" name="archiver_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="users"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="7" name="summary" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="8" name="owner_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="Defined in XML" implied="false" onDeleteCascade="false" table="users"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="9" name="image_file_name" nullable="true" remarks="" size="256" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="10" name="image_content_type" nullable="true" remarks="" size="256" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="11" name="image_file_size" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="6" id="12" name="image_updated_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="6" id="13" name="deleted_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" defaultValue="false" digits="0" id="14" name="has_added_member" nullable="true" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" defaultValue="false" digits="0" id="15" name="has_added_workfile" nullable="true" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" defaultValue="false" digits="0" id="16" name="has_added_sandbox" nullable="true" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" defaultValue="false" digits="0" id="17" name="has_changed_settings" nullable="true" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" digits="0" id="18" name="sandbox_id" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="19" name="legacy_id" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" defaultValue="true" digits="0" id="20" name="show_sandbox_datasets" nullable="true" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" defaultValue="true" digits="0" id="21" name="is_project" nullable="true" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" defaultValue="'on_track'::character varying" digits="0" id="22" name="project_status" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="23" name="project_status_reason" nullable="true" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="24" name="milestones_count" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="25" name="milestones_achieved_count" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="26" name="project_target_date" nullable="true" remarks="" size="13" type="date"/>
+         <column autoUpdated="false" defaultValue="false" digits="0" id="27" name="archived" nullable="true" remarks="" size="1" type="bool"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="workspaces_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="index_workspaces_on_archiver_id" unique="false">
+            <column ascending="true" name="archiver_id"/>
+         </index>
+         <index name="index_workspaces_on_deleted_at" unique="false">
+            <column ascending="true" name="deleted_at"/>
+         </index>
+         <index name="index_workspaces_on_deleted_at_and_id" unique="false">
+            <column ascending="true" name="deleted_at"/>
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="index_workspaces_on_id_and_deleted_at" unique="false">
+            <column ascending="true" name="id"/>
+            <column ascending="true" name="deleted_at"/>
+         </index>
+         <index name="index_workspaces_on_owner_id" unique="false">
+            <column ascending="true" name="owner_id"/>
+         </index>
+      </table>
+   </tables>
+</database>

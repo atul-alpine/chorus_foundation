@@ -1,0 +1,50 @@
+// dot 2.36.0 on Mac OS X 10.10
+// SchemaSpy rev 590
+digraph "imports" {
+  graph [
+    rankdir="RL"
+    bgcolor="#f7f7f7"
+    nodesep="0.18"
+    ranksep="0.46"
+    fontname="Helvetica"
+    fontsize="11"
+  ];
+  node [
+    fontname="Helvetica"
+    fontsize="11"
+    shape="plaintext"
+  ];
+  edge [
+    arrowsize="0.8"
+  ];
+  "imports" [
+    label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
+      <TR><TD COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">imports</TD></TR>
+      <TR><TD PORT="id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">id</TD></TR>
+      <TR><TD PORT="import_schedule_id" COLSPAN="3" ALIGN="LEFT">import_schedule_id</TD></TR>
+      <TR><TD PORT="finished_at" COLSPAN="3" ALIGN="LEFT">finished_at</TD></TR>
+      <TR><TD PORT="created_at" COLSPAN="3" ALIGN="LEFT">created_at</TD></TR>
+      <TR><TD PORT="workspace_id" COLSPAN="3" ALIGN="LEFT">workspace_id</TD></TR>
+      <TR><TD PORT="to_table" COLSPAN="3" ALIGN="LEFT">to_table</TD></TR>
+      <TR><TD PORT="source_id" COLSPAN="3" ALIGN="LEFT">source_id</TD></TR>
+      <TR><TD PORT="truncate" COLSPAN="3" ALIGN="LEFT">truncate</TD></TR>
+      <TR><TD PORT="new_table" COLSPAN="3" ALIGN="LEFT">new_table</TD></TR>
+      <TR><TD PORT="user_id" COLSPAN="3" ALIGN="LEFT">user_id</TD></TR>
+      <TR><TD PORT="sample_count" COLSPAN="3" ALIGN="LEFT">sample_count</TD></TR>
+      <TR><TD PORT="file_name" COLSPAN="3" ALIGN="LEFT">file_name</TD></TR>
+      <TR><TD PORT="success" COLSPAN="3" ALIGN="LEFT">success</TD></TR>
+      <TR><TD PORT="destination_dataset_id" COLSPAN="3" ALIGN="LEFT">destination_dataset_id</TD></TR>
+      <TR><TD PORT="legacy_id" COLSPAN="3" ALIGN="LEFT">legacy_id</TD></TR>
+      <TR><TD PORT="started_at" COLSPAN="3" ALIGN="LEFT">started_at</TD></TR>
+      <TR><TD PORT="type" COLSPAN="3" ALIGN="LEFT">type</TD></TR>
+      <TR><TD PORT="schema_id" COLSPAN="3" ALIGN="LEFT">schema_id</TD></TR>
+      <TR><TD PORT="source_type" COLSPAN="3" ALIGN="LEFT">source_type</TD></TR>
+      <TR><TD PORT="canceled_at" COLSPAN="3" ALIGN="LEFT">canceled_at</TD></TR>
+      <TR><TD PORT="cancel_message" COLSPAN="3" ALIGN="LEFT">cancel_message</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+    </TABLE>>
+    URL="tables/imports.html"
+    tooltip="imports"
+  ];
+}

@@ -1,0 +1,37 @@
+// dot 2.36.0 on Mac OS X 10.10
+// SchemaSpy rev 590
+digraph "import_templates" {
+  graph [
+    rankdir="RL"
+    bgcolor="#f7f7f7"
+    nodesep="0.18"
+    ranksep="0.46"
+    fontname="Helvetica"
+    fontsize="11"
+  ];
+  node [
+    fontname="Helvetica"
+    fontsize="11"
+    shape="plaintext"
+  ];
+  edge [
+    arrowsize="0.8"
+  ];
+  "import_templates" [
+    label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
+      <TR><TD COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">import_templates</TD></TR>
+      <TR><TD PORT="id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">id</TD></TR>
+      <TR><TD PORT="destination_id" COLSPAN="3" ALIGN="LEFT">destination_id</TD></TR>
+      <TR><TD PORT="source_id" COLSPAN="3" ALIGN="LEFT">source_id</TD></TR>
+      <TR><TD PORT="destination_name" COLSPAN="3" ALIGN="LEFT">destination_name</TD></TR>
+      <TR><TD PORT="truncate" COLSPAN="3" ALIGN="LEFT">truncate</TD></TR>
+      <TR><TD PORT="row_limit" COLSPAN="3" ALIGN="LEFT">row_limit</TD></TR>
+      <TR><TD PORT="created_at" COLSPAN="3" ALIGN="LEFT">created_at</TD></TR>
+      <TR><TD PORT="updated_at" COLSPAN="3" ALIGN="LEFT">updated_at</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+    </TABLE>>
+    URL="tables/import_templates.html"
+    tooltip="import_templates"
+  ];
+}
