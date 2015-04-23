@@ -60,6 +60,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency  'quiet_assets'
 
   s.add_development_dependency 'rspec-rails'
+  s.add_development_dependency 'shoulda-matchers'
 
   s.test_files = Dir['spec/**/*']
   #  ================= FOR DEVELOPMENT AND TESTING PURPOSE ONLY ===================

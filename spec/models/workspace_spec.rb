@@ -1,9 +1,8 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Workspace do
-  describe "test truth" do
-    it "should be true" do
-      expect(true).to eq(true)
-    end
+
+  describe "associations" do
+    it { should have_many(:activities) }
   end
 end
