@@ -1,4 +1,5 @@
 class BaseSchema < ActiveRecord::Migration
+
   def change
     create_table 'activities', :force => true do |t|
       t.integer 'entity_id'
@@ -624,6 +625,5 @@ class BaseSchema < ActiveRecord::Migration
     end
 
     add_index 'queue_classic_jobs', ['q_name', 'id'], :name => 'idx_qc_on_name_only_unlocked'
-
   end
 end

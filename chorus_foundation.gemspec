@@ -17,9 +17,12 @@ Gem::Specification.new do |s|
   s.files = Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.rdoc']
   s.test_files = Dir['test/**/*']
 
-  s.add_dependency 'rails', '~> 4.2.1'
-  s.add_dependency  'responders', '~> 2.0'
-  s.add_dependency  'activerecord-jdbcpostgresql-adapter'
+  s.add_dependency 'rails', '4.1.10'
+  s.add_dependency  'responders'
+
+  s.add_dependency  'activerecord-jdbcsqlite3-adapter'
+  # s.add_dependency  'activerecord-jdbcpostgresql-adapter'
+
   s.add_dependency  'jquery-rails'
   s.add_dependency  'therubyrhino'
   # This gem provides integration for Rails projects using the Less stylesheet language in the asset pipeline. See https://github.com/metaskills/less-rails
@@ -46,15 +49,17 @@ Gem::Specification.new do |s|
 
   #  ================= FOR DEVELOPMENT AND TESTING PURPOSE ONLY ===================
   #  This gem provides official integration for Ruby on Rails projects with the Sass stylesheet language. See https://github.com/rails/sass-rails
-  s.add_development_dependency 'sass-rails', '~> 5.0'
+  s.add_development_dependency 'sass-rails'
   # CoffeeScript adapter for the Rails asset pipeline. Also adds support to use CoffeeScript to respond to JavaScript requests (use .coffee views).
   # See https://github.com/rails/coffee-rails
-  s.add_development_dependency 'coffee-rails', '~> 4.1.0'
+  s.add_development_dependency 'coffee-rails'
 
   # Quiet Assets turns off the Rails asset pipeline log. This means that it suppresses messages in your development log such as:
   #Started GET "/assets/application.js" for 127.0.0.1 at 2015-01-28 13:35:34 +0300
   #Served asset /application.js - 304 Not Modified (8ms). See https://github.com/evrone/quiet_assets
   s.add_development_dependency  'quiet_assets'
+
+  s.add_development_dependency 'rspec-rails'
 
   s.test_files = Dir['spec/**/*']
   #  ================= FOR DEVELOPMENT AND TESTING PURPOSE ONLY ===================
